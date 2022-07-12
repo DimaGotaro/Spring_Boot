@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+<p>Введите изменённые значения сообщения:</p>
+<form th:method="POST" th:action="@{/{id}(id=${obj.getId})}" th:object="${obj}">
+    <label>Введите текст:
+        <input type="text" th:field="*{text}" />
+    </label>
+    <label>Введите тэг:
+        <input type="text" th:field="*{tag}" />
+    </label>
+    <input type="submit" value="Изменить" />
+</form>
+</body>
+</html>

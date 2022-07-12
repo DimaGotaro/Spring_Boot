@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All</title>
+</head>
+<body>
+<h2><a th:href="@{/hello2}" th:text="Hello"></a></h2>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выйти"/>
+</form>
+<br>
+<form method="POST" th:action="@{/all}">
+    <label>Введите текст нового сообщения:
+        <input type="text" name="text" placeholder="Текст сообщения" />
+    </label>
+    <br>
+    <br>
+    <label>Введите тэг нового сообщения:
+        <input type="text" name="tag" placeholder="Тэг сообщения" />
+    </label>
+    <input type="submit" value="Добавить" />
+</form>
+<br>
+<form th:method="POST" th:action="@{/f}">
+    <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />--><!--прописан автоматически-->
+    <label>Найти сообщения по тэгу
+        <input type="text" name="fil" />
+    </label>
+    <input type="submit" value="Найти" />
+</form>
+<hr />
+<p>Список сообщений:</p>
+<div th:each="mess : ${all}">
+    <p th:text="${'Id: ' + mess.getId}"></p>
+    <p th:text="${'Text: ' + mess.getText}"></p>
+    <p th:text="${'Tag: ' + mess.getTag}"></p>
+    <a th:href="@{/up/{id}(id=${mess.getId})}"
+       th:text="Изменить"></a>
+    <form method="POST" action="/d">
+        <input type="hidden" name="id" th:value="${mess.getId}" />
+        <input type="submit" value="Удалить" />
+    </form>
+    <br>
+</div>
+</body>
+</html>
