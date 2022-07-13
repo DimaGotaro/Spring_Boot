@@ -22,6 +22,7 @@ public class Demo_controller {
                         // required = false - присваивает null, если значение не передано
                         Model model) {
         model.addAttribute("name", name);
+
         return "hello";
     }
 
@@ -29,6 +30,7 @@ public class Demo_controller {
     public String hello2(@RequestParam(value = "name", defaultValue = "Map") String name,
                         Map<String, Object> model) {
         model.put("name", name);
+
         return "hello";
     }
 
@@ -75,31 +77,31 @@ public class Demo_controller {
         return "redirect:/all";
     }
 
-    @GetMapping("/{id}")
-    public String update(@PathVariable(name = "id") Long id,
-                         Map<String, Object> map) {
-        Message byId = messRepos.findById(id).orElse(null);
-        map.put("obj", byId);
-
-        return "update";
-    }
-
-    @PostMapping("/{id}")
-    public String updateP(@PathVariable(name = "id") Long id,
-                         @ModelAttribute(name = "obj") Message message) {
-        Message message1 = new Message();
-        message1.setId(id);
-        message1.setText(message.getText());
-        message1.setTag(message.getTag());
-        message1.setAuthor(message.getAuthor());
-        messRepos.save(message1);
-        return "redirect:/all";
-    }
-
-    @PostMapping("/d")
-    public String delete(@RequestParam(name = "id") Long id) {
-        messRepos.deleteById(id);
-
-        return "redirect:/all";
-    }
+//    @GetMapping("/{id}")
+//    public String update(@PathVariable(name = "id") Long id,
+//                         Map<String, Object> map) {
+//        Message byId = messRepos.findById(id).orElse(null);
+//        map.put("obj", byId);
+//
+//        return "update";
+//    }
+//
+//    @PostMapping("/{id}")
+//    public String updateP(@PathVariable(name = "id") Long id,
+//                         @ModelAttribute(name = "obj") Message message) {
+//        Message message1 = messRepos.findById(id).orElse(null);
+//        assert message1 != null;
+//        message1.setText(message.getText());
+//        message1.setTag(message.getTag());
+//        messRepos.save(message1);
+//
+//        return "redirect:/all";
+//    }
+//
+//    @PostMapping("/d")
+//    public String delete(@RequestParam(name = "id") Long id) {
+//        messRepos.deleteById(id);
+//
+//        return "redirect:/all";
+//    }
 }

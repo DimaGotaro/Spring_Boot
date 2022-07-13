@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>All</title>
@@ -39,14 +39,14 @@
     </label>
     <input type="submit" value="Найти" />
 </form>
-<p>Список сообщений:</p>
-<div th:each="mess : ${all}">
+<p class="sob">Список сообщений:</p>
+<div class="mess" th:each="mess : ${all}">
     <p th:text="${'Id: ' + mess.getId}"></p>
     <p th:text="${'Text: ' + mess.getText}"></p>
     <p th:text="${'Tag: ' + mess.getTag}"></p>
     <p th:text="${'Author: ' + mess.getAuthorName}"></p>
     <a th:href="@{/{id}(id=${mess.getId})}"
-       th:text="Изменить"></a>
+       th:text="Изменить"></a><br>
     <form method="POST" action="/d">
         <input type="hidden" name="id" th:value="${mess.getId}" />
         <input type="submit" value="Удалить" />
