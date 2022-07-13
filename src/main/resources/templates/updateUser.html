@@ -7,14 +7,13 @@
 </head>
 <body>
 <p>Введите изменённые значения сообщения:</p>
-<form th:method="POST" th:action="@{/{id}(id=${obj.getId})}" th:object="${obj}">
-    <label>Введите текст:
-        <input type="text" th:field="*{text}" />
+<form th:method="POST" th:action="@{/user/{id}(id=${objU.getId})}" th:object="${objU}">
+    <label>Введите имя:
+        <input type="text" th:field="*{username}" />
     </label>
-    <label>Введите тэг:
-        <input type="text" th:field="*{tag}" />
+    <label>Введите пароль:
+        <input type="text" th:field="*{password}" />
     </label>
-    <input type="hidden" th:field="*{author}" th:value="${obj.getAuthorName}"/>
     <input type="submit" value="Изменить" />
 </form>
 </body>

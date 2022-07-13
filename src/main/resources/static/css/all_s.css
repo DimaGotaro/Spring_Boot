@@ -18,3 +18,36 @@
 body {
     background-color: #cfcfcf;
 }
+
+.table {
+    width: 50%;
+    border-spacing: 0;
+    /* расстояние между ячейками */
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.table th {
+    border-bottom: 1px solid gray;
+}
+
+.table th:nth-child(1), .table th:nth-child(2), .table th:nth-child(3), .table th:nth-child(4) {
+    border-right: 1px solid gray;
+}
+
+.table th:nth-child(1) {
+    border-left: 1px solid gray;
+}
+
+.table td:nth-child(1), .table td:nth-child(2), .table td:nth-child(3), .table td:nth-child(4) {
+    border-right: 1px solid gray;
+}
+
+.table td:nth-child(1) {
+    border-left: 1px solid gray;
+}

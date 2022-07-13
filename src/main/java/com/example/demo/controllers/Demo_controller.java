@@ -50,9 +50,17 @@ public class Demo_controller {
     }
 
     @GetMapping("/all")
-    public String all(Map<String, Object> map) {
-        Iterable<Message> all = messRepos.findAll();
-        map.put("all", all);
+    public String all(Map<String, Object> map,
+                      @RequestParam(name = "fil", required = false) String tag) {
+        Iterable<Message> messages;
+        if (tag != null && !tag.isEmpty()) { // если не равно null и не передано пустое значение
+            messages = messRepos.findByTag(tag);
+            map.put("tag", tag);
+        }
+        else {
+            messages = messRepos.findAll();
+        }
+        map.put("all", messages);
 
         return "all";
     }
@@ -67,7 +75,7 @@ public class Demo_controller {
         return "redirect:/all";
     }
 
-    @GetMapping("/up/{id}")
+    @GetMapping("/{id}")
     public String update(@PathVariable(name = "id") Long id,
                          Map<String, Object> map) {
         Message byId = messRepos.findById(id).orElse(null);
@@ -83,6 +91,7 @@ public class Demo_controller {
         message1.setId(id);
         message1.setText(message.getText());
         message1.setTag(message.getTag());
+        message1.setAuthor(message.getAuthor());
         messRepos.save(message1);
         return "redirect:/all";
     }
@@ -92,21 +101,5 @@ public class Demo_controller {
         messRepos.deleteById(id);
 
         return "redirect:/all";
-    }
-
-    @PostMapping("/f")
-    public String filter(@RequestParam(name = "fil") String tag,
-                         Map<String, Object> map) {
-        Iterable<Message> messages;
-        if (tag != null && !tag.isEmpty()) { // если не равно null и не передано пустое значение
-            messages = messRepos.findByTag(tag);
-        }
-        else {
-            messages = messRepos.findAll();
-        }
-        map.put("all", messages); // параметр с таким именем выводит все объекты в методе all, в этом методе
-        // мы присваиваем этом параметру значения метода поиска по полю tag
-
-        return "all";
     }
 }

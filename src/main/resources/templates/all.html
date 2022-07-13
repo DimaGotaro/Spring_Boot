@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>All</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../static/css/all_s.css" th:href="@{/css/all_s.css}" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/all_s.css}" />
 </head>
 <body>
 <div class="cont">
@@ -25,17 +25,17 @@
     </form>
     </div>
     <div>
-    <h2><a th:href="@{/hello2}" th:text="Hello"></a></h2>
+        <h2><a th:href="@{/hello2}" th:text="Hello"></a>, <a th:href="@{/user}" th:text="Users"></a></h2>
     <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Выйти"/>
     </form>
     </div>
 </div>
-<form th:method="POST" th:action="@{/f}">
+<form th:method="GET" th:action="@{/all}">
     <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />--><!--прописан автоматически-->
     <label>Найти сообщения по тэгу
-        <input type="text" name="fil" placeholder="Введите тэг"/>
+        <input type="text" name="fil" placeholder="Введите тэг" th:value="${tag}"/>
     </label>
     <input type="submit" value="Найти" />
 </form>
@@ -44,11 +44,11 @@
     <p th:text="${'Id: ' + mess.getId}"></p>
     <p th:text="${'Text: ' + mess.getText}"></p>
     <p th:text="${'Tag: ' + mess.getTag}"></p>
-    <p th:text="${'Author: ' + mess.getAuthor}"></p>
-    <a th:href="@{/up/{id}(id=${mess.getId})}"
+    <p th:text="${'Author: ' + mess.getAuthorName}"></p>
+    <a th:href="@{/{id}(id=${mess.getId})}"
        th:text="Изменить"></a>
     <form method="POST" action="/d">
-        <input type="hidden" name="id" th:value="${mess.getAuthorName}" />
+        <input type="hidden" name="id" th:value="${mess.getId}" />
         <input type="submit" value="Удалить" />
     </form>
     <br>
