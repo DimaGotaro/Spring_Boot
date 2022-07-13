@@ -1,4 +1,4 @@
-.fl {
+.fl, .cv {
     display: flex;
     align-items: center;
 }
@@ -17,6 +17,14 @@
 
 body {
     background-color: #cfcfcf;
+}
+
+.del {
+    margin-left: 20px;
+}
+
+.dob {
+    margin-left: 320px;
 }
 
 .table {

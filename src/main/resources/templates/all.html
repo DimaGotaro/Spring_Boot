@@ -21,7 +21,7 @@
         </label>
         <br>
         <br>
-        <input type="submit" value="Добавить" />
+        <input type="submit" value="Добавить" class="dob" />
     </form>
     </div>
     <div>
@@ -45,12 +45,15 @@
     <p th:text="${'Text: ' + mess.getText}"></p>
     <p th:text="${'Tag: ' + mess.getTag}"></p>
     <p th:text="${'Author: ' + mess.getAuthorName}"></p>
-    <a th:href="@{/{id}(id=${mess.getId})}"
-       th:text="Изменить"></a><br>
-    <form method="POST" action="/d">
-        <input type="hidden" name="id" th:value="${mess.getId}" />
-        <input type="submit" value="Удалить" />
-    </form>
+    <div class="cv">
+        <a th:href="@{/{id}(id=${mess.getId})}"
+       th:text="Изменить"></a>
+        <br>
+        <form method="POST" action="/d" class="del">
+            <input type="hidden" name="id" th:value="${mess.getId}" />
+            <input type="submit" value="Удалить" />
+        </form>
+    </div>
     <br>
 </div>
 </div>
