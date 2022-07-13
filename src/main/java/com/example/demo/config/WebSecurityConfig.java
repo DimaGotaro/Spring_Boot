@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -20,11 +21,15 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final DataSource dataSource;
+//    private final DataSource dataSource;
+//    @Autowired
+//    public WebSecurityConfig(DataSource dataSource) {
+//        this.dataSource = dataSource;
+//    }
+    private final UserService userService;
 
-    @Autowired
-    public WebSecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public WebSecurityConfig(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
@@ -46,11 +51,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select username, password, active from usr where username=?")
-                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
+        auth/*.jdbcAuthentication()
+                .dataSource(dataSource)*/
+                .userDetailsService(userService)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+//                .usersByUsernameQuery("select username, password, active from usr where username=?")
+//                // поиск системой пользователя по его имени
+//                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
     }
 
 //    @Bean

@@ -1,0 +1,20 @@
+.fl {
+    display: flex;
+    align-items: center;
+}
+
+.fl1 {
+    margin-right: 200px;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.cont {
+    max-width: 1200px;
+    margin: auto;
+    padding-top: 50px;
+}
+
+body {
+    background-color: #cfcfcf;
+}
