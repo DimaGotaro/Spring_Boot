@@ -19,8 +19,13 @@ body {
     background-color: #cfcfcf;
 }
 
-.del {
+.del, .img {
     margin-left: 20px;
+}
+
+.img {
+    width: 350px;
+    height: 200px;
 }
 
 .dob {

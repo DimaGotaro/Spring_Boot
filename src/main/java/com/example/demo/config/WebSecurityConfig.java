@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.entity.Message;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -40,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/regis", "/css/all_s.css").permitAll()
+                .antMatchers("/", "/login", "/regis", "/css/**", "/img/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

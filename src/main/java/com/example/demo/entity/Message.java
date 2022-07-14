@@ -17,8 +17,9 @@ public class Message {
     private String tag;
 //    @ManyToOne(fetch = FetchType.EAGER) // одному пользователю соответствует множество сообщений. Каждый раз получая
     // сообщение, получаем информацию об авторе
-    @JoinColumn(name = "user_id") // название колонки
+//    @JoinColumn(name = "user_id") // название колонки
     private String author;
+    private String filename;
 
     public Message(String text, String tag, String author) {
         this.text = text;
