@@ -46,10 +46,15 @@
 </form>
 <p class="sob">Список сообщений:</p>
 <div class="mess" th:each="mess : ${all}">
-    <p th:text="${'Id: ' + mess.getId}"></p>
-    <p th:text="${'Text: ' + mess.getText}"></p>
-    <p th:text="${'Tag: ' + mess.getTag}"></p>
-    <p th:text="${'Author: ' + mess.getAuthorName}"></p>
+    <div>
+        <p th:text="${'Id: ' + mess.getId}"></p>
+        <p th:text="${'Text: ' + mess.getText}"></p>
+        <p th:text="${'Tag: ' + mess.getTag}"></p>
+        <p th:text="${'Author: ' + mess.getAuthorName}"></p>
+    </div>
+    <div th:if="${mess.getFilename}">
+        <img th:src="@{/img/{m}(m=${mess.getFilename})}" class="img" />
+    </div>
     <div class="cv">
         <a th:href="@{/{id}(id=${mess.getId})}"
        th:text="Изменить"></a>
@@ -58,9 +63,6 @@
             <input type="hidden" name="id" th:value="${mess.getId}" />
             <input type="submit" value="Удалить" />
         </form>
-        <div th:if="${mess.getFilename}">
-        <img th:src="@{/img/{m}(m=${mess.getFilename})}" class="img" />
-        </div>
     </div>
     <br>
 </div>

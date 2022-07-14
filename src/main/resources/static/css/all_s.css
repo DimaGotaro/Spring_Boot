@@ -1,6 +1,10 @@
-.fl, .cv {
+.fl, .cv, .mess {
     display: flex;
     align-items: center;
+}
+
+.cv {
+    margin-left: auto;
 }
 
 .fl1 {

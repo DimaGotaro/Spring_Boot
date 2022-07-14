@@ -84,12 +84,12 @@ public class Demo_controller {
         if ( file != null){
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) { // если uploadDir не существует, то мы её создаём
-                uploadDir.mkdir();
+                uploadDir.mkdir(); // если папки нету, по пути uploadPath, то создаём её
             }
-            String uuidFile = UUID.randomUUID().toString();
+            String uuidFile = UUID.randomUUID().toString(); // создаём уникальное значение
             String resultFileName = uuidFile + "." + file.getOriginalFilename();
 
-            // загружаем файл
+            // загружаем файл в папку uploadPath
             file.transferTo(new File(uploadPath + "/" + resultFileName));
 
             message.setFilename(resultFileName);
