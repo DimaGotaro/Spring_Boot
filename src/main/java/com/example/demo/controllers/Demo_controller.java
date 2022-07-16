@@ -81,7 +81,7 @@ public class Demo_controller {
                       @AuthenticationPrincipal User user,
                       @RequestParam("file") MultipartFile file) throws IOException {
         Message message = new Message(text, tag, user.getUsername());
-        if ( file != null){
+        if ( file != null && !file.getOriginalFilename().isEmpty()){ // не null и если него задано имя файла
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) { // если uploadDir не существует, то мы её создаём
                 uploadDir.mkdir(); // если папки нету, по пути uploadPath, то создаём её
